@@ -1,21 +1,23 @@
 # Logseq Jira Report Plugin
 
-[![Github All Releases](https://img.shields.io/github/downloads/vipzhicheng-starter/logseq-plugin-starter/total.svg)](https://github.com/vipzhicheng-starter/logseq-plugin-starter/releases)
+Logseq Plugin that outputs blocks based on Jira. Based on vipzhicheng-starter/logseq-plugin-starter.
 
+## Configuration
 
-## What's in it.
+The plugin needs to be configured before its first use. Note that slash commands won't appear unless the plugin is configured.
 
-* Just a hello world for now.
-* No vue/react included.
+| Item | Description |
+| - | - |
+| jiraUrl | The base URL of your JIRA instance (e.g. https://contoso.atlassian.net/) | 
+| jiraUsername | The username for your JIRA instance (e.g. jappleseed@contoso.com) |
+| jiraToken | The JIRA API token. You can create this by visiting [your Atlassian account page](https://id.atlassian.com/manage-profile/profile-and-visibility) |
+| boardId | The id of the board to pull reports from. This is typically the last part of the URL i.e. https://contoso.atlassian.net/jira/software/c/projects/software/boards/543 corresponds to board ID 543. |
 
-## How to use it.
+## Slash Commands
 
-1. Clone
-2. Run `npm install`
-3. Run `npm run build`
-4. In logseq, click `Plugins` which is in right top dropdown menu
-5. Click `Load unpacked plugin` button and select the `dist` sub directory.
-6. If plugin not work, you can try to disable and enable the plugin by clicking the switch button on Plugins page.
+### Get Current Jira Board
 
-## Licence
+Outputs tickets assigned to you on the configured board, broken out by columns as defined by the board.
+
+## License
 MIT
