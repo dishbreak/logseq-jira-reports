@@ -36,4 +36,18 @@ export const settings: SettingSchemaDesc[] = [
     type: "number",
     default: 0,
   },
+  {
+    key: "assignedToMeQuery",
+    title: "JQL Query: Issues Assigned to Me",
+    description: "Query used to display issues assigned to user",
+    type: "string",
+    default: "assignee = currentUser() AND status NOT IN (Done, Closed, Archived)",
+  },
+  {
+    key: "seenTodayQuery",
+    title: "JQL Query: Issues Seen Today",
+    description: "Query used to display issues the user viewed today",
+    type: "string",
+    default: "lastViewed >= startOfDay() order by lastViewed",
+  },
 ]

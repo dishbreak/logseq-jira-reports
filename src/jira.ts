@@ -63,6 +63,19 @@ export class Jira {
     return result
   }
 
+  async searchJql(query: string, options?: Partial<SearchOptions>): Promise<IssueSearchResults> {
+    const req = new URL("/rest/api/3/search/jql", this.url)
+    req.searchParams.set("jql", query)
+    if (options?.fields) {
+      req.searchParams.set("fields", options.fields.join(","))
+    }
+    if (options?.maxResults) {
+      req.searchParams.set("maxResults", options.maxResults.toString())
+    }
+
+    return this.get<IssueSearchResults>(req)
+  }
+
   async getBoardUrl(): Promise<URL> {
     const boardInfo = await this.get<Board>(`/rest/agile/1.0/board/${this.boardID}`)
     return new URL(`/jira/software/c/projects/${boardInfo.location.projectTypeKey}/boards/${this.boardID}`, this.url)
@@ -82,7 +95,12 @@ type Myself = {
   emailAddress: string
 }
 
-type IssueSearchResults = { issues: Issue[] }
+export type IssueSearchResults = { issues: Issue[] }
+
+export type SearchOptions = {
+  maxResults: number,
+  fields: Array<string>
+}
 
 export type IssueMap = { [key: string]: Issue[] }
 
