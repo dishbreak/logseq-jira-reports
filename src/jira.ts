@@ -44,7 +44,7 @@ export class Jira {
     return this.get<IssueSearchResults>(req)
   }
 
-  async getBoard(): Promise<IssueMap> {
+  async getBoardContents(): Promise<IssueMap> {
     const boardConfig = await this.get<BoardConfig>(`/rest/agile/1.0/board/${this.boardID}/configuration`)
     let result: IssueMap = {}
     let columnForStatus: { [key: string]: string } = {}
@@ -63,6 +63,11 @@ export class Jira {
     return result
   }
 
+  async getBoardUrl(): Promise<URL> {
+    const boardInfo = await this.get<Board>(`/rest/agile/1.0/board/${this.boardID}`)
+    return new URL(`/jira/software/c/projects/${boardInfo.location.projectTypeKey}/boards/${this.boardID}`, this.url)
+  }
+
   absolutePath(path: string): string {
     return new URL(path, this.url).toString()
   }
@@ -79,7 +84,7 @@ type Myself = {
 
 type IssueSearchResults = { issues: Issue[] }
 
-type IssueMap = { [key: string]: Issue[] }
+export type IssueMap = { [key: string]: Issue[] }
 
 type Issue = {
   key: string,
@@ -111,4 +116,21 @@ type BoardConfig = {
   columnConfig: {
     columns: ColumnConfig[]
   },
+}
+
+type Board = {
+  id: number,
+  location: {
+    displayName: string,
+    name: string,
+    projectId: number,
+    projectKey: string,
+    projectName: string,
+    projectTypeKey: string,
+    userAccountId: string,
+    userId: number,
+  },
+  name: string,
+  self: string,
+  type: string,
 }

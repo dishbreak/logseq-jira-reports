@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
+const loader = require('sass-loader');
 
 module.exports = {
   entry: {
@@ -62,6 +63,7 @@ module.exports = {
       patterns: [
         { from: './src/icon.png', to: 'icon.png' },
         { from: './package.json', to: 'package.json' },
+        { from: './README.md', to: 'README.md' },
       ],
     }),
     new MiniCssExtractPlugin({
