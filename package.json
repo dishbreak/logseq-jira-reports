@@ -32,5 +32,6 @@
   },
   "dependencies": {
     "@logseq/libs": "0.0.17"
-  }
+  },
+  "packageManager": "yarn@4.6.0"
 }

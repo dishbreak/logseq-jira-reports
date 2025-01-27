@@ -7,9 +7,6 @@ const fetchingResults = "⏱️ Fetching results from Jira..."
 
 async function main() {
   logseq.useSettingsSchema(settings)
-  logseq.onSettingsChanged((a, b) => {
-    logseq.UI.showMsg("Please reload the plugin for changes to take effect", "warning")
-  })
 
   if (!logseq.settings?.jiraUrl || !logseq.settings?.jiraUsername || !logseq.settings?.jiraToken) {
     logseq.UI.showMsg("Please configure JIRA settings in the plugin settings page.", "warning")

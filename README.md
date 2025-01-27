@@ -29,7 +29,42 @@ Outputs tickets assigned to the current user. The JQL for this view is configure
 
 ### Get Jira Issues Viewed Today
 
-Shows all Jira Issues viewed today by the current useful, ideal for use in journals. The JQL for this view is configured via the `seenTodayQuery` setting.
+Shows all Jira Issues viewed today by the current user, ideal for use in journals. The JQL for this view is configured via the `seenTodayQuery` setting.
+
+## Development
+
+### Setup
+
+This project relies on [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm). To set up the project, run the following commands:
+
+```shell
+# activate desired node version
+nvm use
+
+# setup yarn via corepack
+corepack enable
+
+# install dependencies
+yarn install
+```
+
+### Building the Plugin
+
+Yarn handles invoking Webpack. To build the plugin, run:
+
+```shell
+yarn run build
+```
+
+A `dist/` directory will appear in the root of your repository.
+
+### Loading Plugin in Logseq
+
+1. In the Logseq desktop app, under the _Advanced_ tab in Settings, enable _Developer Mode_. 
+2. Select the three dots in the upper right hand corner and select _Plugins_. You should now see an option called _Load Unpacked Plugin_. Click it.
+3. Browse to the **dist/** directory created when you ran the build command.
+
+Note that when you make changes to the plugin, you'll need to rerun `yarn run build` and click _Reload_ on the _logseq-jira-reports_ card on the _Plugins_ screen in order to see your changes take effect.
 
 ## License
 MIT
